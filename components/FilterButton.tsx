@@ -3,10 +3,10 @@ import React from "react";
 const FilterButton = () => {
   return (
     <>
-      <select className="select select-bordered w-full max-w-xs">
+      <select className="select select-bordered w-full max-w-xs bg-[#ffffff] border-2 border-gray-300 text-black">
         <option selected>Sort By Default</option>
         <option>Sort By Packed</option>
-        <option>Sord By Unpacked</option>
+        <option>Sort By Unpacked</option>
       </select>
     </>
   );
