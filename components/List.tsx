@@ -1,10 +1,12 @@
 import React from "react";
 import { ImCross } from "react-icons/im";
+import FilterButton from "./FilterButton";
 
 const List = () => {
   return (
     <>
       <ul className="list bg-base-white rounded-box shadow-md text-black w-100">
+        <FilterButton />
         <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">
           Your Items
         </li>
@@ -17,7 +19,7 @@ const List = () => {
               checked
             />
 
-            <h1>First Item</h1>
+            <h1 className="text-lg">First Item</h1>
           </div>
           <div>
             <button className="btn btn-square btn-ghost">
