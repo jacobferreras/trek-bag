@@ -18,6 +18,9 @@ export const useAddItems = () => {
       text: text,
       isCompleted: false,
     };
+
+    if (text === "") return;
+
     e.preventDefault();
     setItems([...items, newItem]);
     setTotalItems((prev) => prev + 1);
