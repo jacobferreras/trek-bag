@@ -7,25 +7,40 @@ import { useAddItems } from "../hooks/useAddItems";
 import FilterButton from "./FilterButton";
 
 const Container = () => {
-  const { items, text, totalItems, handleChange, handleClick } = useAddItems();
+  const {
+    items,
+    totalCompletedItems,
+
+    text,
+    totalItems,
+    handleChange,
+    handleClick,
+    handleCompletedItems,
+  } = useAddItems();
 
   return (
     <>
       <div className="card w-auto bg-[#ffffff] card-xl shadow-sm">
         <h1 className="text-xl font-bold text-black text-end pt-4 pr-12">
-          0/{totalItems} Items packed
+          {totalCompletedItems}/{totalItems} Items packed
         </h1>
         <div className="card-body flex flex-row justify-between gap-4">
           <div className="flex flex-col gap-4 w-2/3">
             <FilterButton />
             <h1 className="text-xl text-black">Your Items</h1>
-            {items.map((item) => (
-              <List
-                key={item.id}
-                item={item.text}
-                isCompleted={item.isCompleted}
-              />
-            ))}
+            {items.map(
+              (item) => (
+                console.log(item.completed),
+                (
+                  <List
+                    key={item.id}
+                    item={item.text}
+                    isCompleted={item.completed}
+                    handleCompletedItems={() => handleCompletedItems(item.id)}
+                  />
+                )
+              )
+            )}
           </div>
 
           <div className="flex flex-col gap-4">
