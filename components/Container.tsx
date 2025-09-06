@@ -7,11 +7,14 @@ import { useAddItems } from "../hooks/useAddItems";
 import FilterButton from "./FilterButton";
 
 const Container = () => {
-  const { items, text, handleChange, handleClick } = useAddItems();
+  const { items, text, totalItems, handleChange, handleClick } = useAddItems();
 
   return (
     <>
       <div className="card w-auto bg-[#ffffff] card-xl shadow-sm">
+        <h1 className="text-xl font-bold text-black text-end pt-4 pr-12">
+          0/{totalItems} Items packed
+        </h1>
         <div className="card-body flex flex-row justify-between gap-4">
           <div className="flex flex-col gap-4 w-2/3">
             <FilterButton />

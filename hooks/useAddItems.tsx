@@ -5,6 +5,7 @@ export const useAddItems = () => {
     { id: 1, text: "Soap", isCompleted: false },
   ]);
   const [text, setText] = useState("");
+  const [totalItems, setTotalItems] = useState(1);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -19,12 +20,14 @@ export const useAddItems = () => {
     };
     e.preventDefault();
     setItems([...items, newItem]);
+    setTotalItems((prev) => prev + 1);
     setText("");
   };
 
   return {
-    items,
     text,
+    items,
+    totalItems,
     handleChange,
     handleClick,
   };

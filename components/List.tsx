@@ -21,7 +21,7 @@ const List = ({ item, isChecked, setIsChecked }: ListProps) => {
               }
             />
 
-            <h1 className="text-lg">{item}</h1>
+            <h1 className="text-lg font-bold">{item}</h1>
           </div>
           <div>
             <button className="btn btn-square btn-ghost">
