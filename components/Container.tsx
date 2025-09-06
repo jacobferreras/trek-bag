@@ -1,5 +1,6 @@
 import React from "react";
 import FilterButton from "./FilterButton";
+import List from "./List";
 
 const Container = () => {
   return (
@@ -7,6 +8,7 @@ const Container = () => {
       <div className="card w-96 bg-[#ffffff] card-xl shadow-sm">
         <div className="card-body">
           <FilterButton />
+          <List />
         </div>
       </div>
     </>
