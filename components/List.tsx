@@ -2,11 +2,11 @@ import React from "react";
 import { ImCross } from "react-icons/im";
 interface ListProps {
   item: string;
-  isChecked: boolean;
-  setIsChecked?: React.Dispatch<React.SetStateAction<boolean>>;
+  isCompleted: boolean;
+  setIsCompleted?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const List = ({ item, isChecked, setIsChecked }: ListProps) => {
+const List = ({ item, isCompleted, setIsCompleted }: ListProps) => {
   return (
     <>
       <ul className="list bg-base-white rounded-box shadow-md text-black w-100">
@@ -14,10 +14,10 @@ const List = ({ item, isChecked, setIsChecked }: ListProps) => {
           <div className="flex flex-row gap-4 items-center">
             <input
               type="checkbox"
-              value={isChecked ? "checked" : "unchecked"}
+              value={isCompleted ? "checked" : "unchecked"}
               className="checkbox checkbox-neutral"
               onClick={
-                setIsChecked ? () => setIsChecked(!isChecked) : undefined
+                setIsCompleted ? () => setIsCompleted(!isCompleted) : undefined
               }
             />
 

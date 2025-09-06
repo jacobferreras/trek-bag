@@ -23,7 +23,7 @@ const Container = () => {
               <List
                 key={item.id}
                 item={item.text}
-                isChecked={item.isCompleted}
+                isCompleted={item.isCompleted}
               />
             ))}
           </div>

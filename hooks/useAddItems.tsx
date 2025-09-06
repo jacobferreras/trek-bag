@@ -6,6 +6,7 @@ export const useAddItems = () => {
   ]);
   const [text, setText] = useState("");
   const [totalItems, setTotalItems] = useState(1);
+  const [totalCompletedItems, setTotalCompletedItems] = useState(1);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
