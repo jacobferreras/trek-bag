@@ -1,25 +1,27 @@
 import React from "react";
 import { ImCross } from "react-icons/im";
-import FilterButton from "./FilterButton";
+interface ListProps {
+  item: string;
+  isChecked: boolean;
+  setIsChecked?: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-const List = () => {
+const List = ({ item, isChecked, setIsChecked }: ListProps) => {
   return (
     <>
       <ul className="list bg-base-white rounded-box shadow-md text-black w-100">
-        <FilterButton />
-        <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">
-          Your Items
-        </li>
-
         <li className="list-row w-full flex flex-row justify-between items-center p-4">
           <div className="flex flex-row gap-4 items-center">
             <input
               type="checkbox"
+              value={isChecked ? "checked" : "unchecked"}
               className="checkbox checkbox-neutral"
-              checked
+              onClick={
+                setIsChecked ? () => setIsChecked(!isChecked) : undefined
+              }
             />
 
-            <h1 className="text-lg">First Item</h1>
+            <h1 className="text-lg">{item}</h1>
           </div>
           <div>
             <button className="btn btn-square btn-ghost">

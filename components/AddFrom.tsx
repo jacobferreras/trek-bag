@@ -1,6 +1,12 @@
 import React from "react";
 
-const AddFrom = () => {
+interface AddFromProps {
+  text: string;
+  handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+const AddFrom = ({ text, handleChange, handleClick }: AddFromProps) => {
   return (
     <>
       <fieldset className="fieldset bg-transparent border-base-300 rounded-box w-xs border p-4 text-black">
@@ -10,9 +16,13 @@ const AddFrom = () => {
             type="text"
             className="input join-item bg-transparent border-2 border-gray-400 text-black w-full"
             placeholder="Product name"
+            value={text}
+            onChange={handleChange}
           />
         </div>
-        <button className="btn join-item bg-[#48392a]">Add to List</button>
+        <button className="btn join-item bg-[#48392a]" onClick={handleClick}>
+          Add to List
+        </button>
       </fieldset>
     </>
   );
