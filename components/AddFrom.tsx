@@ -18,6 +18,7 @@ const AddFrom = ({ text, handleChange, handleClick }: AddFromProps) => {
             placeholder="Product name"
             value={text}
             onChange={handleChange}
+            autoFocus
           />
         </div>
         <button className="btn join-item bg-[#48392a]" onClick={handleClick}>
