@@ -44,6 +44,11 @@ export const useItems = () => {
     setTotalItems((prev) => prev - 1);
   };
 
+  const handleRemoveAllItems = () => {
+    setItems([]);
+    setTotalItems(0);
+  };
+
   const totalCompletedItems = items.filter((item) => item.completed).length;
 
   return {
@@ -56,5 +61,6 @@ export const useItems = () => {
     handleAddItem,
     handleCompletedItems,
     handleDeleteItems,
+    handleRemoveAllItems,
   };
 };
