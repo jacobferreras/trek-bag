@@ -1,12 +1,11 @@
 import { useRef, useState } from "react";
+import { Items } from "../types/items";
 
 export const useAddItems = () => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [items, setItems] = useState([
-    { id: 1, text: "Soap", completed: false },
-  ]);
+  const [items, setItems] = useState<Items[]>([]);
   const [text, setText] = useState("");
-  const [totalItems, setTotalItems] = useState(1);
+  const [totalItems, setTotalItems] = useState(0);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -40,6 +39,11 @@ export const useAddItems = () => {
     inputRef.current?.focus();
   };
 
+  const handleDeleteItems = (id: number) => {
+    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
+    setTotalItems((prev) => prev - 1);
+  };
+
   const totalCompletedItems = items.filter((item) => item.completed).length;
 
   return {
@@ -51,5 +55,6 @@ export const useAddItems = () => {
     handleChange,
     handleClick,
     handleCompletedItems,
+    handleDeleteItems,
   };
 };
