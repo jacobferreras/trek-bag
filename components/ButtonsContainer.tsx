@@ -8,9 +8,9 @@ const ButtonsContainer = () => {
   return (
     <>
       <fieldset className="fieldset bg-transparent border-base-300 rounded-box w-xs border p-4 text-black">
-        {buttonName.map((name) => (
-          <Button key={name} name={name} />
-        ))}
+        <Button name="Mark All as Completed" />
+        <Button name="Mark All as Incomplete" />
+        <Button name="Remove All Items" />
       </fieldset>
     </>
   );

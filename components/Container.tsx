@@ -16,6 +16,7 @@ const Container = () => {
     handleAddItem,
     handleCompletedItems,
     handleDeleteItems,
+    handleRemoveAllItems,
     inputRef,
   } = useItems();
 
@@ -51,8 +52,8 @@ const Container = () => {
             <AddFrom
               inputRef={inputRef}
               text={text}
-              handleChange={handleChange}
-              handleAddItem={handleAddItem}
+              onTextChange={handleChange}
+              onAddItem={handleAddItem}
             />
             <ButtonsContainer />
           </div>
