@@ -2,6 +2,8 @@ import React from "react";
 import Button from "./Button";
 import { buttonName } from "../lib/constant";
 
+interface ButtonsContainerProps {}
+
 const ButtonsContainer = () => {
   return (
     <>
