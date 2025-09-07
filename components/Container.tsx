@@ -10,12 +10,12 @@ const Container = () => {
   const {
     items,
     totalCompletedItems,
-
     text,
     totalItems,
     handleChange,
     handleClick,
     handleCompletedItems,
+    inputRef,
   } = useAddItems();
 
   return (
@@ -45,6 +45,7 @@ const Container = () => {
 
           <div className="flex flex-col gap-4">
             <AddFrom
+              inputRef={inputRef}
               text={text}
               handleChange={handleChange}
               handleClick={handleClick}
