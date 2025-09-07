@@ -15,6 +15,7 @@ const Container = () => {
     handleChange,
     handleClick,
     handleCompletedItems,
+    handleDeleteItems,
     inputRef,
   } = useAddItems();
 
@@ -28,6 +29,9 @@ const Container = () => {
           <div className="flex flex-col gap-4 w-2/3">
             <FilterButton />
             <h1 className="text-xl text-black">Your Items</h1>
+            {items.length === 0 && (
+              <h1 className="text-lg text-black text-center">No Items</h1>
+            )}
             {items.map(
               (item) => (
                 console.log(item.completed),
