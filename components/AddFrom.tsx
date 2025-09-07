@@ -4,14 +4,14 @@ interface AddFromProps {
   inputRef?: React.RefObject<HTMLInputElement | null>;
   text: string;
   handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  handleAddItem?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const AddFrom = ({
   inputRef,
   text,
   handleChange,
-  handleClick,
+  handleAddItem,
 }: AddFromProps) => {
   return (
     <>
@@ -28,7 +28,7 @@ const AddFrom = ({
             autoFocus
           />
         </div>
-        <button className="btn join-item bg-[#48392a]" onClick={handleClick}>
+        <button className="btn join-item bg-[#48392a]" onClick={handleAddItem}>
           Add to List
         </button>
       </fieldset>

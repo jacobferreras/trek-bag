@@ -3,7 +3,7 @@ import React from "react";
 import List from "./List";
 import AddFrom from "./AddFrom";
 import ButtonsContainer from "./ButtonsContainer";
-import { useAddItems } from "../hooks/useAddItems";
+import { useItems } from "../hooks/useItems";
 import FilterButton from "./FilterButton";
 
 const Container = () => {
@@ -13,11 +13,11 @@ const Container = () => {
     text,
     totalItems,
     handleChange,
-    handleClick,
+    handleAddItem,
     handleCompletedItems,
     handleDeleteItems,
     inputRef,
-  } = useAddItems();
+  } = useItems();
 
   return (
     <>
@@ -52,7 +52,7 @@ const Container = () => {
               inputRef={inputRef}
               text={text}
               handleChange={handleChange}
-              handleClick={handleClick}
+              handleAddItem={handleAddItem}
             />
             <ButtonsContainer />
           </div>
