@@ -17,6 +17,8 @@ const Container = () => {
     handleCompletedItems,
     handleDeleteItems,
     handleRemoveAllItems,
+    handleMarkAllAsCompleted,
+    handleMarkAllAsIncomplete,
     inputRef,
   } = useItems();
 
@@ -33,19 +35,15 @@ const Container = () => {
             {items.length === 0 && (
               <h1 className="text-lg text-black text-center">No Items</h1>
             )}
-            {items.map(
-              (item) => (
-                console.log(item.completed),
-                (
-                  <List
-                    key={item.id}
-                    item={item.text}
-                    isCompleted={item.completed}
-                    handleCompletedItems={() => handleCompletedItems(item.id)}
-                  />
-                )
-              )
-            )}
+            {items.map((item) => (
+              <List
+                key={item.id}
+                item={item.text}
+                isCompleted={item.completed}
+                handleCompletedItems={() => handleCompletedItems(item.id)}
+                onDeleteItem={() => handleDeleteItems(item.id)}
+              />
+            ))}
           </div>
 
           <div className="flex flex-col gap-4">
@@ -55,7 +53,11 @@ const Container = () => {
               onTextChange={handleChange}
               onAddItem={handleAddItem}
             />
-            <ButtonsContainer />
+            <ButtonsContainer
+              onRemoveAllItems={handleRemoveAllItems}
+              onMarkAllAsCompleted={handleMarkAllAsCompleted}
+              onMarkAllAsIncomplete={handleMarkAllAsIncomplete}
+            />
           </div>
         </div>
       </div>

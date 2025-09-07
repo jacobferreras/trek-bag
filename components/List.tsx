@@ -4,9 +4,15 @@ interface ListProps {
   item: string;
   isCompleted: boolean;
   handleCompletedItems: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onDeleteItem?: () => void;
 }
 
-const List = ({ item, isCompleted, handleCompletedItems }: ListProps) => {
+const List = ({
+  item,
+  isCompleted,
+  handleCompletedItems,
+  onDeleteItem,
+}: ListProps) => {
   return (
     <>
       <ul className="list bg-base-white rounded-box shadow-md text-black w-100">
@@ -22,7 +28,7 @@ const List = ({ item, isCompleted, handleCompletedItems }: ListProps) => {
             <h1 className="text-lg font-bold">{item}</h1>
           </div>
           <div>
-            <button className="btn btn-square btn-ghost">
+            <button className="btn btn-square btn-ghost" onClick={onDeleteItem}>
               <ImCross />
             </button>
           </div>

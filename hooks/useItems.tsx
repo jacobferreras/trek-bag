@@ -49,6 +49,18 @@ export const useItems = () => {
     setTotalItems(0);
   };
 
+  const handleMarkAllAsCompleted = () => {
+    setItems((prevItems) =>
+      prevItems.map((item) => ({ ...item, completed: true }))
+    );
+  };
+
+  const handleMarkAllAsIncomplete = () => {
+    setItems((prevItems) =>
+      prevItems.map((items) => ({ ...items, completed: false }))
+    );
+  };
+
   const totalCompletedItems = items.filter((item) => item.completed).length;
 
   return {
@@ -62,5 +74,7 @@ export const useItems = () => {
     handleCompletedItems,
     handleDeleteItems,
     handleRemoveAllItems,
+    handleMarkAllAsCompleted,
+    handleMarkAllAsIncomplete,
   };
 };

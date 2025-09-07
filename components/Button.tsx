@@ -2,12 +2,15 @@ import React from "react";
 
 interface ButtonProps {
   name: string;
+  onClick?: () => void;
 }
 
-const Button = ({ name }: ButtonProps) => {
+const Button = ({ name, onClick }: ButtonProps) => {
   return (
     <>
-      <button className="btn join-item bg-[#48392a]">{name}</button>
+      <button className="btn join-item bg-[#48392a]" onClick={onClick}>
+        {name}
+      </button>
     </>
   );
 };
