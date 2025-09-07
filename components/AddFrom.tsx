@@ -3,16 +3,11 @@ import React from "react";
 interface AddFromProps {
   inputRef?: React.RefObject<HTMLInputElement | null>;
   text: string;
-  handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleAddItem?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onTextChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onAddItem?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const AddFrom = ({
-  inputRef,
-  text,
-  handleChange,
-  handleAddItem,
-}: AddFromProps) => {
+const AddFrom = ({ inputRef, text, onTextChange, onAddItem }: AddFromProps) => {
   return (
     <>
       <fieldset className="fieldset bg-transparent border-base-300 rounded-box w-xs border p-4 text-black">
@@ -24,11 +19,11 @@ const AddFrom = ({
             className="input join-item bg-transparent border-2 border-gray-400 text-black w-full"
             placeholder="Product name"
             value={text}
-            onChange={handleChange}
+            onChange={onTextChange}
             autoFocus
           />
         </div>
-        <button className="btn join-item bg-[#48392a]" onClick={handleAddItem}>
+        <button className="btn join-item bg-[#48392a]" onClick={onAddItem}>
           Add to List
         </button>
       </fieldset>
