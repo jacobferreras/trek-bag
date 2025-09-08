@@ -14,7 +14,7 @@ const Container = () => {
     totalItems,
     handleChange,
     handleAddItem,
-    handleCompletedItems,
+    handleToggleItems,
     handleDeleteItems,
     handleRemoveAllItems,
     handleMarkAllAsCompleted,
@@ -40,7 +40,7 @@ const Container = () => {
                 key={item.id}
                 item={item.text}
                 isCompleted={item.completed}
-                handleCompletedItems={() => handleCompletedItems(item.id)}
+                handleToggleItems={() => handleToggleItems(item.id)}
                 onDeleteItem={() => handleDeleteItems(item.id)}
               />
             ))}
