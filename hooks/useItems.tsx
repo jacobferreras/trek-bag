@@ -1,4 +1,5 @@
-import { useRef, useState } from "react";
+"use client";
+import { useEffect, useRef, useState } from "react";
 import { Items } from "../types/items";
 
 export const useItems = () => {
@@ -17,6 +18,15 @@ export const useItems = () => {
     }
     return 0;
   });
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const itemsFromLocalStorage = JSON.parse(
+        localStorage.getItem("items") || "[]"
+      );
+      setItems(itemsFromLocalStorage);
+    }
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -68,6 +78,12 @@ export const useItems = () => {
       prevItems.map((items) => ({ ...items, completed: false }))
     );
   };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("items", JSON.stringify(items));
+    }
+  }, [items]);
 
   return {
     inputRef,
