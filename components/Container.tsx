@@ -8,7 +8,8 @@ import FilterButton from "./FilterButton";
 
 const Container = () => {
   const {
-    items,
+    sortItems,
+    setSortBy,
     totalCompletedItems,
     text,
     totalItems,
@@ -30,12 +31,16 @@ const Container = () => {
         </h1>
         <div className="card-body flex flex-row justify-between gap-4 overflow-y-scroll h-[80vh]">
           <div className="flex flex-col gap-4 w-2/3">
-            <FilterButton />
+            <FilterButton
+              onChange={(e) =>
+                setSortBy(e.target.value as "all" | "packed" | "unpacked")
+              }
+            />
             <h1 className="text-xl text-black">Your Items</h1>
-            {items.length === 0 && (
+            {sortItems.length === 0 && (
               <h1 className="text-lg text-black text-center">No Items</h1>
             )}
-            {items.map((item) => (
+            {sortItems.map((item) => (
               <List
                 key={item.id}
                 item={item.text}
