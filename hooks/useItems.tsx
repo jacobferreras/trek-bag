@@ -4,8 +4,9 @@ import { Items } from "../types/items";
 export const useItems = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [items, setItems] = useState<Items[]>([]);
+  const totalItems = items.length;
+  const totalCompletedItems = items.filter((item) => item.completed).length;
   const [text, setText] = useState("");
-  const [totalItems, setTotalItems] = useState(0);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -34,19 +35,16 @@ export const useItems = () => {
 
     e.preventDefault();
     setItems([...items, newItem]);
-    setTotalItems((prev) => prev + 1);
     setText("");
     inputRef.current?.focus();
   };
 
   const handleDeleteItems = (id: number) => {
     setItems((prevItems) => prevItems.filter((item) => item.id !== id));
-    setTotalItems((prev) => prev - 1);
   };
 
   const handleRemoveAllItems = () => {
     setItems([]);
-    setTotalItems(0);
   };
 
   const handleMarkAllAsCompleted = () => {
@@ -60,8 +58,6 @@ export const useItems = () => {
       prevItems.map((items) => ({ ...items, completed: false }))
     );
   };
-
-  const totalCompletedItems = items.filter((item) => item.completed).length;
 
   return {
     inputRef,
