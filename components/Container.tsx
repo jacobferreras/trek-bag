@@ -28,7 +28,7 @@ const Container = () => {
         <h1 className="text-xl font-bold text-black text-end pt-4 pr-12">
           {totalCompletedItems}/{totalItems} Items packed
         </h1>
-        <div className="card-body flex flex-row justify-between gap-4">
+        <div className="card-body flex flex-row justify-between gap-4 overflow-y-scroll h-[80vh]">
           <div className="flex flex-col gap-4 w-2/3">
             <FilterButton />
             <h1 className="text-xl text-black">Your Items</h1>
@@ -46,7 +46,7 @@ const Container = () => {
             ))}
           </div>
 
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 sticky top-0 z-10">
             <AddFrom
               inputRef={inputRef}
               text={text}
