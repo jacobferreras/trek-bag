@@ -8,7 +8,6 @@ export const useItems = () => {
   const totalCompletedItems = items.filter((item) => item.completed).length;
   const [text, setText] = useState("");
   const [sortBy, setSortBy] = useState<"all" | "packed" | "unpacked">("all");
-
   const sortItems = [...items].sort((a, b) => {
     if (sortBy === "packed") {
       return Number(b.completed) - Number(a.completed);
