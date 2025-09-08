@@ -7,6 +7,17 @@ export const useItems = () => {
   const totalItems = items.length;
   const totalCompletedItems = items.filter((item) => item.completed).length;
   const [text, setText] = useState("");
+  const [sortBy, setSortBy] = useState<"all" | "packed" | "unpacked">("all");
+
+  const sortItems = [...items].sort((a, b) => {
+    if (sortBy === "packed") {
+      return Number(b.completed) - Number(a.completed);
+    }
+    if (sortBy === "unpacked") {
+      return Number(a.completed) - Number(b.completed);
+    }
+    return 0;
+  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -61,6 +72,8 @@ export const useItems = () => {
 
   return {
     inputRef,
+    sortItems,
+    setSortBy,
     text,
     items,
     totalItems,
