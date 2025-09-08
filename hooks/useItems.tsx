@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import { Items } from "../types/items";
 
 export const useItems = () => {
@@ -9,15 +9,20 @@ export const useItems = () => {
   const totalCompletedItems = items.filter((item) => item.completed).length;
   const [text, setText] = useState("");
   const [sortBy, setSortBy] = useState<"all" | "packed" | "unpacked">("all");
-  const sortItems = [...items].sort((a, b) => {
-    if (sortBy === "packed") {
-      return Number(b.completed) - Number(a.completed);
-    }
-    if (sortBy === "unpacked") {
-      return Number(a.completed) - Number(b.completed);
-    }
-    return 0;
-  });
+
+  const sortItems = useMemo(
+    () =>
+      [...items].sort((a, b) => {
+        if (sortBy === "packed") {
+          return Number(b.completed) - Number(a.completed);
+        }
+        if (sortBy === "unpacked") {
+          return Number(a.completed) - Number(b.completed);
+        }
+        return 0;
+      }),
+    [items, sortBy]
+  );
 
   useEffect(() => {
     if (typeof window !== "undefined") {
