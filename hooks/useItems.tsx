@@ -38,7 +38,7 @@ export const useItems = () => {
     }
 
     const newItem = {
-      id: Math.floor(Math.random() * 1000),
+      id: Date.now(),
       text: text,
       completed: false,
     };
