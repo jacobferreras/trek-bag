@@ -28,6 +28,12 @@ export const useItems = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("items", JSON.stringify(items));
+    }
+  }, [items]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setText(e.target.value);
@@ -78,12 +84,6 @@ export const useItems = () => {
       prevItems.map((items) => ({ ...items, completed: false }))
     );
   };
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("items", JSON.stringify(items));
-    }
-  }, [items]);
 
   return {
     inputRef,
