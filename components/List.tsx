@@ -3,14 +3,14 @@ import { ImCross } from "react-icons/im";
 interface ListProps {
   item: string;
   isCompleted: boolean;
-  handleCompletedItems: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleToggleItems: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onDeleteItem?: () => void;
 }
 
 const List = ({
   item,
   isCompleted,
-  handleCompletedItems,
+  handleToggleItems,
   onDeleteItem,
 }: ListProps) => {
   return (
@@ -22,7 +22,7 @@ const List = ({
               type="checkbox"
               checked={isCompleted}
               className="checkbox checkbox-neutral"
-              onChange={handleCompletedItems}
+              onChange={handleToggleItems}
             />
 
             <h1 className="text-lg font-bold">{item}</h1>
