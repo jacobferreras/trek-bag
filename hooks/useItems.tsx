@@ -13,7 +13,7 @@ export const useItems = () => {
     setText(e.target.value);
   };
 
-  const handleCompletedItems = (id: number) => {
+  const handleToggleItems = (id: number) => {
     setItems((prevItems) =>
       prevItems.map((item) =>
         item.id === id ? { ...item, completed: !item.completed } : item
@@ -67,7 +67,7 @@ export const useItems = () => {
     totalCompletedItems,
     handleChange,
     handleAddItem,
-    handleCompletedItems,
+    handleToggleItems,
     handleDeleteItems,
     handleRemoveAllItems,
     handleMarkAllAsCompleted,
