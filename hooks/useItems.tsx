@@ -52,7 +52,7 @@ export const useItems = () => {
     );
   };
 
-  const handleAddItem = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleAddItem = () => {
     if (text === "") {
       inputRef.current?.focus();
       return;
@@ -64,7 +64,6 @@ export const useItems = () => {
       completed: false,
     };
 
-    e.preventDefault();
     setItems([...items, newItem]);
     setText("");
     inputRef.current?.focus();
