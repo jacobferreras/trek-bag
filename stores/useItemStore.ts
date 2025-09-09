@@ -4,6 +4,8 @@ import { Items } from "@/types/items";
 interface ItemState {
   text: string;
   items: Items[];
+  totalItems?: number;
+  totalCompletedItems?: number;
   removeAllItems: () => void;
   markAllAsCompleted?: () => void;
   markAllAsIncomplete?: () => void;
@@ -60,5 +62,9 @@ const useItemStore = create<ItemState>((set) => ({
     set(() => ({ text: e.target.value }));
   },
 }));
+
+export const selectTotalItems = (state: ItemState) => state.items.length;
+export const selectTotalCompletedItems = (state: ItemState) =>
+  state.items.filter((item) => item.completed).length;
 
 export default useItemStore;
