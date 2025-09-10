@@ -1,17 +1,16 @@
-import React from "react";
+"use client";
 import Button from "./Button";
+import useItemStore from "@/stores/useItemStore";
 
-interface ButtonsContainerProps {
-  onRemoveAllItems?: () => void;
-  onMarkAllAsCompleted?: () => void;
-  onMarkAllAsIncomplete?: () => void;
-}
+const ButtonsContainer = () => {
+  const onRemoveAllItems = useItemStore((state) => state.removeAllItems);
+  const onMarkAllAsCompleted = useItemStore(
+    (state) => state.markAllAsCompleted
+  );
+  const onMarkAllAsIncomplete = useItemStore(
+    (state) => state.markAllAsIncomplete
+  );
 
-const ButtonsContainer = ({
-  onRemoveAllItems,
-  onMarkAllAsCompleted,
-  onMarkAllAsIncomplete,
-}: ButtonsContainerProps) => {
   return (
     <>
       <fieldset className="fieldset bg-transparent border-base-300 rounded-box w-xs border p-4 text-black">
