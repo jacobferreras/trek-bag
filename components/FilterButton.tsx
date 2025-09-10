@@ -1,15 +1,15 @@
-import React from "react";
+"use client";
+import { useSortItems } from "@/hooks/useSortItems";
 
-interface FilterButtonProps {
-  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-}
-
-const FilterButton = ({ onChange }: FilterButtonProps) => {
+const FilterButton = () => {
+  const { setSortBy } = useSortItems();
   return (
     <>
       <select
         className="select select-bordered w-100 max-w-lg bg-[#ffffff] border-2 border-gray-400 text-black"
-        onChange={onChange}
+        onChange={(e) =>
+          setSortBy(e.target.value as "all" | "packed" | "unpacked")
+        }
       >
         <option value="all">Sort By Default</option>
         <option value="packed">Sort By Packed</option>
