@@ -1,8 +1,10 @@
-"use client";
 import { useSortItems } from "@/hooks/useSortItems";
 
-const FilterButton = () => {
-  const { setSortBy } = useSortItems();
+interface FilterButtonProps {
+  setSortBy: (value: "all" | "packed" | "unpacked") => void;
+}
+
+const FilterButton = ({ setSortBy }: FilterButtonProps) => {
   return (
     <>
       <select
