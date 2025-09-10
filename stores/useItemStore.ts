@@ -74,7 +74,7 @@ const useItemStore = create<ItemState>()(
       },
     }),
     {
-      name: "items", // unique name
+      name: "items",
     }
   )
 );
