@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 import { Items } from "@/types/items";
 
 interface ItemState {
@@ -9,59 +10,74 @@ interface ItemState {
   removeAllItems: () => void;
   markAllAsCompleted?: () => void;
   markAllAsIncomplete?: () => void;
-  deleteItem?: (id: number) => void;
-  addItem?: (item: Items) => void;
-  toggleItem?: (id: number) => void;
+  deleteItem: (id: number) => void;
+  addItem: (text: string) => void;
+  toggleItem: (id: number) => void;
   textChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const useItemStore = create<ItemState>((set) => ({
-  text: "",
+const useItemStore = create<ItemState>()(
+  persist(
+    (set) => ({
+      text: "",
 
-  items: [],
+      items: [],
 
-  removeAllItems: () => {
-    set(() => ({ items: [] }));
-  },
+      removeAllItems: () => {
+        set(() => ({ items: [] }));
+      },
 
-  markAllAsCompleted: () => {
-    set((state) => ({
-      items: state.items.map((item) => ({ ...item, completed: true })),
-    }));
-  },
+      markAllAsCompleted: () => {
+        set((state) => ({
+          items: state.items.map((item) => ({ ...item, completed: true })),
+        }));
+      },
 
-  markAllAsIncomplete: () => {
-    set((state) => ({
-      items: state.items.map((item) => ({ ...item, completed: false })),
-    }));
-  },
+      markAllAsIncomplete: () => {
+        set((state) => ({
+          items: state.items.map((item) => ({ ...item, completed: false })),
+        }));
+      },
 
-  deleteItem: (id: number) => {
-    set((state) => ({ items: state.items.filter((item) => item.id !== id) }));
-  },
+      deleteItem: (id: number) => {
+        set((state) => ({
+          items: state.items.filter((item) => item.id !== id),
+        }));
+      },
 
-  addItem: (item: Items) => {
-    const newItem = {
-      id: Date.now(),
-      text: item.text,
-      completed: false,
-    };
-    set((state) => ({ items: [...state.items, newItem], text: "" }));
-  },
+      addItem: (text: string) => {
+        if (text === "") {
+          return;
+        }
+        const newItem = {
+          id: Date.now(),
+          text,
+          completed: false,
+        };
+        set((state) => ({
+          items: [...state.items, newItem],
+          text: "",
+        }));
+      },
 
-  tooggleItem: (id: number) => {
-    set((state) => ({
-      items: state.items.map((item) => ({
-        ...item,
-        completed: item.id === id ? !item.completed : item.completed,
-      })),
-    }));
-  },
+      toggleItem: (id: number) => {
+        set((state) => ({
+          items: state.items.map((item) => ({
+            ...item,
+            completed: item.id === id ? !item.completed : item.completed,
+          })),
+        }));
+      },
 
-  textChange: (e: React.ChangeEvent<HTMLInputElement>) => {
-    set(() => ({ text: e.target.value }));
-  },
-}));
+      textChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+        set(() => ({ text: e.target.value }));
+      },
+    }),
+    {
+      name: "items", // unique name
+    }
+  )
+);
 
 export const selectTotalItems = (state: ItemState) => state.items.length;
 export const selectTotalCompletedItems = (state: ItemState) =>
