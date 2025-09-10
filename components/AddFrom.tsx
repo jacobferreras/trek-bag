@@ -1,13 +1,9 @@
-import React from "react";
+"use client";
+import useAddItemAction from "@/hooks/useAddItemAction";
 
-interface AddFromProps {
-  inputRef?: React.RefObject<HTMLInputElement | null>;
-  text: string;
-  onTextChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onAddItem?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-}
+const AddFrom = () => {
+  const { text, textChange, handleAddItem, inputRef } = useAddItemAction();
 
-const AddFrom = ({ inputRef, text, onTextChange, onAddItem }: AddFromProps) => {
   return (
     <>
       <fieldset className="fieldset bg-transparent border-base-300 rounded-box w-xs border p-4 text-black">
@@ -19,11 +15,11 @@ const AddFrom = ({ inputRef, text, onTextChange, onAddItem }: AddFromProps) => {
             className="input join-item bg-transparent border-2 border-gray-400 text-black w-full"
             placeholder="Product name"
             value={text}
-            onChange={onTextChange}
+            onChange={textChange}
             autoFocus
           />
         </div>
-        <button className="btn join-item bg-[#48392a]" onClick={onAddItem}>
+        <button className="btn join-item bg-[#48392a]" onClick={handleAddItem}>
           Add to List
         </button>
       </fieldset>
